@@ -27,15 +27,18 @@ Get Suggestion
 
 Get Expense Daily
     When Add Expense    apple    50     ${date}
-    And Add Expense    banana    100     ${date}
-    Then Expense Dialy Should Be     150
+    And Add Expense    banana    90     ${date}
+    Then Expense Dialy Should Be     140
 
 
 Get Expense Monthly
     When Add Expense    apple    50     ${date}
-    And Add Expense    banana    100     ${date}
-    Then Expense Monthly Should Be     150
+    And Add Expense    banana    90     ${date}
+    Then Expense Monthly Should Be     140
 
+Get Expense Monthly Detail
+    When Add Expense    apple    50     ${date}
+    Then Expense Monthly Detail Should Contains     apple     50
 
 
 *** Keywords ***
@@ -78,3 +81,9 @@ Expense Monthly Should Be
     [Arguments]    ${amount}
     ${response}=     Request Get Expense Monthly     ${user_ref}
     Should Be Equal As Numbers      ${response.json()[0]['amount']}     ${amount}
+
+Expense Monthly Detail Should Contains
+    [Arguments]    ${description}    ${amount}
+    ${response}=     Request Get Expense Monthly Detail     ${user_ref}     ${monthly}
+    Should Be Equal As Numbers     ${response.json()[0]['amount']}     ${amount}
+    Should Be Equal As Strings     ${response.json()[0]['key']}     ${description}

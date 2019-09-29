@@ -89,3 +89,9 @@ class RequestLibrary:
             'Content-Type': 'application/json',
             'User-Ref': user_ref
         })
+
+    def request_get_expense_monthly_detail(self, user_ref, monthly_keyword):
+        return requests.get(self.expense_url + '/monthlyReport/' + monthly_keyword, headers={
+            'Content-Type': 'application/json',
+            'User-Ref': user_ref
+        })

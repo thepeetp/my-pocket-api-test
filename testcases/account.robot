@@ -27,7 +27,7 @@ Delete Account
 Have a Account
     [Arguments]      ${name}=Account A      ${balance}=100
     Create Account     ${name}     ${balance}
-    Set Test Variable     ${account_id}     ${response.json()}
+    Set Test Variable     ${account_id}     ${response.text}
 
 Delete Account
     Request Delete Account     ${account_id}
