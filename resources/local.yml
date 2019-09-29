@@ -1,0 +1,3 @@
+account_url: https://account-node.herokuapp.com/accounts
+user_url: https://user-node.herokuapp.com/users
+expense_url: https://expense-node.herokuapp.com/expenses

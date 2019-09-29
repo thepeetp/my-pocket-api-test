@@ -1,6 +1,6 @@
 *** Settings ***
-Library     ../libs/RequestLibrary.py
-Library     ../libs/common.py
+Resource    ../resources/imports.robot
+
 
 
 *** Keywords ***

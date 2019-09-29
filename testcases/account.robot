@@ -1,6 +1,6 @@
 *** Settings ***
-Library    ../libs/RequestLibrary.py
 Resource   ../keywords/create_user.robot
+Resource    ../resources/imports.robot
 Test Setup   Have a User
 
 
