@@ -37,8 +37,11 @@ Get Expense Monthly
     Then Expense Monthly Should Be     140
 
 Get Expense Monthly Detail
-    When Add Expense    apple    50     ${date}
-    Then Expense Monthly Detail Should Contains     apple     50
+    When Add Expense    banana    60     ${date}
+    And Add Expense    apple    50     ${date}
+    Then Expense Monthly Detail Should Contains    0    banana    60
+    And Expense Monthly Detail Should Contains    1    apple     50
+
 
 
 *** Keywords ***
@@ -83,7 +86,7 @@ Expense Monthly Should Be
     Should Be Equal As Numbers      ${response.json()[0]['amount']}     ${amount}
 
 Expense Monthly Detail Should Contains
-    [Arguments]    ${description}    ${amount}
+    [Arguments]    ${index}    ${description}    ${amount}
     ${response}=     Request Get Expense Monthly Detail     ${user_ref}     ${monthly}
-    Should Be Equal As Numbers     ${response.json()[0]['amount']}     ${amount}
-    Should Be Equal As Strings     ${response.json()[0]['key']}     ${description}
+    Should Be Equal As Numbers     ${response.json()[${index}]['amount']}     ${amount}
+    Should Be Equal As Strings     ${response.json()[${index}]['key']}     ${description}
