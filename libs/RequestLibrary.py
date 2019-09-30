@@ -27,13 +27,19 @@ class RequestLibrary:
             'User-Ref': user_ref
         })
 
-    def request_delete_account(self, account_id):
-        return requests.delete(self.account_url + '/' + account_id)
+    def request_delete_account(self, account_id, user_ref):
+        return requests.delete(self.account_url + '/' + account_id, headers={
+            'Content-Type': 'application/json',
+            'User-Ref': user_ref
+        })
 
-    def request_update_account(self, account_id, balance):
+    def request_update_account(self, account_id, balance, user_ref):
         print(account_id)
         return requests.put(self.account_url + '/' + account_id, json={
             'balance': balance
+        }, headers={
+            'Content-Type': 'application/json',
+            'User-Ref': user_ref
         })
 
 
@@ -69,8 +75,11 @@ class RequestLibrary:
             'User-Ref': user_ref
         })
 
-    def request_delete_expense(self, id):
-        return requests.delete(self.expense_url + '/' + id)
+    def request_delete_expense(self, id, user_ref):
+        return requests.delete(self.expense_url + '/' + id, headers={
+            'Content-Type': 'application/json',
+            'User-Ref': user_ref
+        })
 
     def request_get_suggestion(self, user_ref):
         return requests.get(self.expense_url + '/suggestion', headers={

@@ -56,7 +56,7 @@ Have a Expense
     Set Test Variable     ${expense_id}     ${response.json()['id']}
 
 Delete Expense
-    Request Delete Expense     ${expense_id}
+    Request Delete Expense     ${expense_id}     ${user_ref}
 
 Should Have a Expense
     [Arguments]    ${description}      ${amount}      ${date}

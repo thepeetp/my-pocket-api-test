@@ -30,12 +30,12 @@ Have a Account
     Set Test Variable     ${account_id}     ${response.text}
 
 Delete Account
-    Request Delete Account     ${account_id}
+    Request Delete Account     ${account_id}     ${user_ref}
 
 
 Update Balance
     [Arguments]     ${balance}
-    Request Update Account     ${account_id}     ${balance}
+    Request Update Account     ${account_id}     ${balance}    ${user_ref}
 
 
 Create Account
