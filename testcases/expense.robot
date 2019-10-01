@@ -1,11 +1,7 @@
 *** Settings ***
 Resource   ../keywords/create_user.robot
 Resource    ../resources/imports.robot
-Test Setup   Have a User
-
-*** Variables ***
-${date}      2019-09-29
-${monthly}     201909
+Test Setup   Setup Expense
 
 *** Test Cases ***
 Create Expense
@@ -90,3 +86,10 @@ Expense Monthly Detail Should Contains
     ${response}=     Request Get Expense Monthly Detail     ${user_ref}     ${monthly}
     Should Be Equal As Numbers     ${response.json()[${index}]['amount']}     ${amount}
     Should Be Equal As Strings     ${response.json()[${index}]['key']}     ${description}
+
+Setup Expense
+    Have a User
+    ${date}=     Get Date
+    ${monthly}=     Get Monthly
+    Set Suite Variable    ${date}
+    Set Suite Variable    ${monthly}
